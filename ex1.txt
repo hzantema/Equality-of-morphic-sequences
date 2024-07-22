@@ -1,0 +1,94 @@
+2
+01
+0
+01
+3
+02
+021
+102
+001
+
+Proof found by standard tool eq:
+
+f(0) = 01
+f(1) = 0
+tau(0) = 0
+tau(1) = 1
+g(0) = 02
+g(1) = 021
+g(2) = 102
+rho(0) = 0
+rho(1) = 0
+rho(2) = 1
+Replace f by f^2:
+f(0) = 010
+f(1) = 01
+Claim to be proved: tau(f^infty(0)) = rho(g^infty(0)).
+We will prove the following 2 properties simultaneously by induction on n.
+(0) tau(f^n(01)) = rho(g^n(02)).
+(1) tau(f^n(0)) = rho(g^n(1)).
+Then our claim follows from (0).
+Basis n=0 of induction:
+tau(f^0(01)) = 01 = rho(g^0(02)).
+tau(f^0(0)) = 0 = rho(g^0(1)).
+Basis of induction proved.
+Induction step part (0):
+tau(f^{n+1}(01)) = 
+tau(f^n(f(01))) = 
+tau(f^n(01001)) = 
+tau(f^n(01)) tau(f^n(0)) tau(f^n(01)) =   (by induction hypothesis)
+rho(g^n(02)) rho(g^n(1)) rho(g^n(02)) = 
+rho(g^n(02102)) = 
+rho(g^n(g(02))) = 
+rho(g^{n+1}(02)).
+Induction step part (1):
+tau(f^{n+1}(0)) = 
+tau(f^n(f(0))) = 
+tau(f^n(010)) = 
+tau(f^n(01)) tau(f^n(0)) =   (by induction hypothesis)
+rho(g^n(02)) rho(g^n(1)) = 
+rho(g^n(021)) = 
+rho(g^n(g(1))) = 
+rho(g^{n+1}(1)).
+Induction step proved, hence claim proved.
+
+Proof found by basic tool eqb:
+
+f(0) = 01
+f(1) = 0
+tau(0) = 0
+tau(1) = 1
+g(0) = 02
+g(1) = 021
+g(2) = 102
+rho(0) = 0
+rho(1) = 0
+rho(2) = 1
+Replace f by f^2:
+f(0) = 010
+f(1) = 01
+Claim to be proved: tau(f^infty(0)) = rho(g^infty(0)).
+We will prove the following properties simultaneously by induction on n.
+(0) tau(f^{n-1}(01)) = rho(g^n(0))
+(1) tau(f^{n-1}(010)) = rho(g^n(1))
+(2) tau(f^{n-1}(001)) = rho(g^n(2))
+Then our claim follows from (0).
+Basis n=1 of induction:
+tau(f^0(01)) = 01 = rho(g(0))
+tau(f^0(010)) = 010 = rho(g(1))
+tau(f^0(001)) = 001 = rho(g(2))
+basis of induction proved
+Induction step part (0):
+tau(f^n(01)) = 
+tau(f^{n-1}(01001)) = 
+rho(g^n(02)) = rho(g^{n+1}(0))
+Induction step part (1):
+tau(f^n(010)) = 
+tau(f^{n-1}(01001010)) = 
+rho(g^n(021)) = rho(g^{n+1}(1))
+Induction step part (2):
+tau(f^n(001)) = 
+tau(f^{n-1}(01001001)) = 
+rho(g^n(102)) = rho(g^{n+1}(2))
+Induction step proved, hence claim proved
+

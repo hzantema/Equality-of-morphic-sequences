@@ -1,0 +1,83 @@
+3
+012
+01
+201
+011
+2
+01
+101
+01
+
+
+Proof found by standard tool eq:
+
+f(0) = 012
+f(1) = 01
+f(2) = 201
+tau(0) = 0
+tau(1) = 1
+tau(2) = 1
+g(0) = 01
+g(1) = 101
+rho(0) = 0
+rho(1) = 1
+Claim to be proved: tau(f^infty(0)) = rho(g^infty(0)).
+We will prove the following 2 properties simultaneously by induction on n.
+(0) tau(f^n(01)) = rho(g^n(01)).
+(1) tau(f^n(2)) = rho(g^n(1)).
+Then our claim follows from (0).
+Basis n=0 of induction:
+tau(f^0(01)) = 01 = rho(g^0(01)).
+tau(f^0(2)) = 1 = rho(g^0(1)).
+Basis of induction proved.
+Induction step part (0):
+tau(f^{n+1}(01)) = 
+tau(f^n(f(01))) = 
+tau(f^n(01201)) = 
+tau(f^n(01)) tau(f^n(2)) tau(f^n(01)) =   (by induction hypothesis)
+rho(g^n(01)) rho(g^n(1)) rho(g^n(01)) = 
+rho(g^n(01101)) = 
+rho(g^n(g(01))) = 
+rho(g^{n+1}(01)).
+Induction step part (1):
+tau(f^{n+1}(2)) = 
+tau(f^n(f(2))) = 
+tau(f^n(201)) = 
+tau(f^n(2)) tau(f^n(01)) =   (by induction hypothesis)
+rho(g^n(1)) rho(g^n(01)) = 
+rho(g^n(101)) = 
+rho(g^n(g(1))) = 
+rho(g^{n+1}(1)).
+Induction step proved, hence claim proved.
+
+Proof found by basic tool eqb:
+
+f(0) = 012
+f(1) = 01
+f(2) = 201
+tau(0) = 0
+tau(1) = 1
+tau(2) = 1
+g(0) = 01
+g(1) = 101
+rho(0) = 0
+rho(1) = 1
+Claim to be proved: tau(f^infty(0)) = rho(g^infty(0)).
+We will prove the following properties simultaneously by induction on n.
+(0) tau(f^{n-1}(01)) = rho(g^n(0))
+(1) tau(f^{n-1}(201)) = rho(g^n(1))
+Then our claim follows from (0).
+Basis n=1 of induction:
+tau(f^0(01)) = 01 = rho(g(0))
+tau(f^0(201)) = 101 = rho(g(1))
+basis of induction proved
+Induction step part (0):
+tau(f^n(01)) = 
+tau(f^{n-1}(01201)) = 
+rho(g^n(01)) = rho(g^{n+1}(0))
+Induction step part (1):
+tau(f^n(201)) = 
+tau(f^{n-1}(20101201)) = 
+rho(g^n(101)) = rho(g^{n+1}(1))
+Induction step proved, hence claim proved
+

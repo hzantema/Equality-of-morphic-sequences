@@ -1,0 +1,160 @@
+5
+01
+2
+31
+04
+0
+00111
+3
+0122
+01220
+0120
+001
+
+two representations of even(fib)
+Proof found by standard tool eq:
+
+f(0) = 01
+f(1) = 2
+f(2) = 31
+f(3) = 04
+f(4) = 0
+tau(0) = 0
+tau(1) = 0
+tau(2) = 1
+tau(3) = 1
+tau(4) = 1
+g(0) = 0122
+g(1) = 01220
+g(2) = 0120
+rho(0) = 0
+rho(1) = 0
+rho(2) = 1
+Replace f by f^3:
+f(0) = 01231
+f(1) = 042
+f(2) = 01031
+f(3) = 01201
+f(4) = 012
+Claim to be proved: tau(f^infty(0)) = rho(g^infty(0)).
+We will prove the following 5 properties simultaneously by induction on n.
+(0) tau(f^n(012)) = rho(g^n(012)).
+(1) tau(f^n(31)) = rho(g^n(20)).
+(2) tau(f^n(0)) = rho(g^n(1)).
+(3) tau(f^n(42)) = rho(g^n(22)).
+(4) tau(f^n(01)) = rho(g^n(00)).
+Then our claim follows from (0).
+Basis n=0 of induction:
+tau(f^0(012)) = 001 = rho(g^0(012)).
+tau(f^0(31)) = 10 = rho(g^0(20)).
+tau(f^0(0)) = 0 = rho(g^0(1)).
+tau(f^0(42)) = 11 = rho(g^0(22)).
+tau(f^0(01)) = 00 = rho(g^0(00)).
+Basis of induction proved.
+Induction step part (0):
+tau(f^{n+1}(012)) = 
+tau(f^n(f(012))) = 
+tau(f^n(0123104201031)) = 
+tau(f^n(012)) tau(f^n(31)) tau(f^n(0)) tau(f^n(42)) tau(f^n(01)) tau(f^n(0)) tau(f^n(31)) =   (by induction hypothesis)
+rho(g^n(012)) rho(g^n(20)) rho(g^n(1)) rho(g^n(22)) rho(g^n(00)) rho(g^n(1)) rho(g^n(20)) = 
+rho(g^n(0122012200120)) = 
+rho(g^n(g(012))) = 
+rho(g^{n+1}(012)).
+Induction step part (1):
+tau(f^{n+1}(31)) = 
+tau(f^n(f(31))) = 
+tau(f^n(01201042)) = 
+tau(f^n(012)) tau(f^n(01)) tau(f^n(0)) tau(f^n(42)) =   (by induction hypothesis)
+rho(g^n(012)) rho(g^n(00)) rho(g^n(1)) rho(g^n(22)) = 
+rho(g^n(01200122)) = 
+rho(g^n(g(20))) = 
+rho(g^{n+1}(20)).
+Induction step part (2):
+tau(f^{n+1}(0)) = 
+tau(f^n(f(0))) = 
+tau(f^n(01231)) = 
+tau(f^n(012)) tau(f^n(31)) =   (by induction hypothesis)
+rho(g^n(012)) rho(g^n(20)) = 
+rho(g^n(01220)) = 
+rho(g^n(g(1))) = 
+rho(g^{n+1}(1)).
+Induction step part (3):
+tau(f^{n+1}(42)) = 
+tau(f^n(f(42))) = 
+tau(f^n(01201031)) = 
+tau(f^n(012)) tau(f^n(01)) tau(f^n(0)) tau(f^n(31)) =   (by induction hypothesis)
+rho(g^n(012)) rho(g^n(00)) rho(g^n(1)) rho(g^n(20)) = 
+rho(g^n(01200120)) = 
+rho(g^n(g(22))) = 
+rho(g^{n+1}(22)).
+Induction step part (4):
+tau(f^{n+1}(01)) = 
+tau(f^n(f(01))) = 
+tau(f^n(01231042)) = 
+tau(f^n(012)) tau(f^n(31)) tau(f^n(0)) tau(f^n(42)) =   (by induction hypothesis)
+rho(g^n(012)) rho(g^n(20)) rho(g^n(1)) rho(g^n(22)) = 
+rho(g^n(01220122)) = 
+rho(g^n(g(00))) = 
+rho(g^{n+1}(00)).
+Induction step proved, hence claim proved.
+
+Proof found by basic tool eqb, after swapping f and g:
+
+f(0) = 0122
+f(1) = 01220
+f(2) = 0120
+tau(0) = 0
+tau(1) = 0
+tau(2) = 1
+g(0) = 01
+g(1) = 2
+g(2) = 31
+g(3) = 04
+g(4) = 0
+rho(0) = 0
+rho(1) = 0
+rho(2) = 1
+rho(3) = 1
+rho(4) = 1
+Replace g by g^3:
+g(0) = 01231
+g(1) = 042
+g(2) = 01031
+g(3) = 01201
+g(4) = 012
+Claim to be proved: tau(f^infty(0)) = rho(g^infty(0)).
+We will prove the following properties simultaneously by induction on n.
+(0) tau(f^{n-1}(01220)) = rho(g^n(0))
+(1) tau(f^{n-1}(122)) = rho(g^n(1))
+(2) tau(f^{n-1}(00120)) = rho(g^n(2))
+(3) tau(f^{n-1}(01200)) = rho(g^n(3))
+(4) tau(f^{n-1}(012)) = rho(g^n(4))
+Then our claim follows from (0).
+Basis n=1 of induction:
+tau(f^0(01220)) = 00110 = rho(g(0))
+tau(f^0(122)) = 011 = rho(g(1))
+tau(f^0(00120)) = 00010 = rho(g(2))
+tau(f^0(01200)) = 00100 = rho(g(3))
+tau(f^0(012)) = 001 = rho(g(4))
+basis of induction proved
+Induction step part (0):
+tau(f^n(01220)) = 
+tau(f^{n-1}(012201220012001200122)) = 
+rho(g^n(01231)) = rho(g^{n+1}(0))
+Induction step part (1):
+tau(f^n(122)) = 
+tau(f^{n-1}(0122001200120)) = 
+rho(g^n(042)) = rho(g^{n+1}(1))
+Induction step part (2):
+tau(f^n(00120)) = 
+tau(f^{n-1}(012201220122001200122)) = 
+rho(g^n(01031)) = rho(g^{n+1}(2))
+Induction step part (3):
+tau(f^n(01200)) = 
+tau(f^{n-1}(012201220012001220122)) = 
+rho(g^n(01201)) = rho(g^{n+1}(3))
+Induction step part (4):
+tau(f^n(012)) = 
+tau(f^{n-1}(0122012200120)) = 
+rho(g^n(012)) = rho(g^{n+1}(4))
+Induction step proved, hence claim proved

@@ -1,0 +1,64 @@
+3
+0122
+01220
+0120
+100
+6
+01
+21
+3
+24
+51
+1
+100111
+
+
+two representations of odd(fib)
+
+Proof found by standard tool eq:
+
+f(0) = 0122
+f(1) = 01220
+f(2) = 0120
+tau(0) = 1
+tau(1) = 0
+tau(2) = 0
+g(0) = 01
+g(1) = 21
+g(2) = 3
+g(3) = 24
+g(4) = 51
+g(5) = 1
+rho(0) = 1
+rho(1) = 0
+rho(2) = 0
+rho(3) = 1
+rho(4) = 1
+rho(5) = 1
+Replace g by g^3:
+g(0) = 0121321
+g(1) = 24321
+g(2) = 351
+g(3) = 24121
+g(4) = 21321
+g(5) = 321
+Claim to be proved: tau(f^infty(0)) = rho(g^infty(0)).
+We will prove the following 1 properties simultaneously by induction on n.
+(0) tau(f^n()) = rho(g^n()).
+Then our claim follows from (0).
+Basis n=0 of induction:
+tau(f^0()) =  = rho(g^0()).
+Basis of induction proved.
+Induction step part (0):
+tau(f^{n+1}()) = 
+tau(f^n(f())) = 
+tau(f^n()) = 
+tau(f^n()) =   (by induction hypothesis)
+rho(g^n()) = 
+rho(g^n()) = 
+rho(g^n(g())) = 
+rho(g^{n+1}()).
+Induction step proved, hence claim proved.
+
+No proof found by basic tool eqb.
+

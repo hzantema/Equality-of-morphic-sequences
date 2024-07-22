@@ -1,0 +1,132 @@
+4
+0132
+1
+2
+132
+0100
+4
+0322
+1
+2
+132
+0101
+
+
+Proof found by standard tool eq:
+
+f(0) = 0132
+f(1) = 1
+f(2) = 2
+f(3) = 132
+tau(0) = 0
+tau(1) = 1
+tau(2) = 0
+tau(3) = 0
+g(0) = 0322
+g(1) = 1
+g(2) = 2
+g(3) = 132
+rho(0) = 0
+rho(1) = 1
+rho(2) = 0
+rho(3) = 1
+Claim to be proved: tau(f^infty(0)) = rho(g^infty(0)).
+We will prove the following 4 properties simultaneously by induction on n.
+(0) tau(f^n(0)) = rho(g^n(0)).
+(1) tau(f^n(13)) = rho(g^n(32)).
+(2) tau(f^n(2)) = rho(g^n(2)).
+(3) tau(f^n(1)) = rho(g^n(1)).
+Then our claim follows from (0).
+Basis n=0 of induction:
+tau(f^0(0)) = 0 = rho(g^0(0)).
+tau(f^0(13)) = 10 = rho(g^0(32)).
+tau(f^0(2)) = 0 = rho(g^0(2)).
+tau(f^0(1)) = 1 = rho(g^0(1)).
+Basis of induction proved.
+Induction step part (0):
+tau(f^{n+1}(0)) = 
+tau(f^n(f(0))) = 
+tau(f^n(0132)) = 
+tau(f^n(0)) tau(f^n(13)) tau(f^n(2)) =   (by induction hypothesis)
+rho(g^n(0)) rho(g^n(32)) rho(g^n(2)) = 
+rho(g^n(0322)) = 
+rho(g^n(g(0))) = 
+rho(g^{n+1}(0)).
+Induction step part (1):
+tau(f^{n+1}(13)) = 
+tau(f^n(f(13))) = 
+tau(f^n(1132)) = 
+tau(f^n(1)) tau(f^n(13)) tau(f^n(2)) =   (by induction hypothesis)
+rho(g^n(1)) rho(g^n(32)) rho(g^n(2)) = 
+rho(g^n(1322)) = 
+rho(g^n(g(32))) = 
+rho(g^{n+1}(32)).
+Induction step part (2):
+tau(f^{n+1}(2)) = 
+tau(f^n(f(2))) = 
+tau(f^n(2)) = 
+tau(f^n(2)) =   (by induction hypothesis)
+rho(g^n(2)) = 
+rho(g^n(2)) = 
+rho(g^n(g(2))) = 
+rho(g^{n+1}(2)).
+Induction step part (3):
+tau(f^{n+1}(1)) = 
+tau(f^n(f(1))) = 
+tau(f^n(1)) = 
+tau(f^n(1)) =   (by induction hypothesis)
+rho(g^n(1)) = 
+rho(g^n(1)) = 
+rho(g^n(g(1))) = 
+rho(g^{n+1}(1)).
+Induction step proved, hence claim proved.
+
+Proof found by basic tool eqb:
+
+f(0) = 0132
+f(1) = 1
+f(2) = 2
+f(3) = 132
+tau(0) = 0
+tau(1) = 1
+tau(2) = 0
+tau(3) = 0
+g(0) = 0322
+g(1) = 1
+g(2) = 2
+g(3) = 132
+rho(0) = 0
+rho(1) = 1
+rho(2) = 0
+rho(3) = 1
+Claim to be proved: tau(f^infty(0)) = rho(g^infty(0)).
+We will prove the following properties simultaneously by induction on n.
+(0) tau(f^{n-1}(0132)) = rho(g^n(0))
+(1) tau(f^{n-1}(1)) = rho(g^n(1))
+(2) tau(f^{n-1}(2)) = rho(g^n(2))
+(3) tau(f^{n-1}(113)) = rho(g^n(3))
+Then our claim follows from (0).
+Basis n=1 of induction:
+tau(f^0(0132)) = 0100 = rho(g(0))
+tau(f^0(1)) = 1 = rho(g(1))
+tau(f^0(2)) = 0 = rho(g(2))
+tau(f^0(113)) = 110 = rho(g(3))
+basis of induction proved
+Induction step part (0):
+tau(f^n(0132)) = 
+tau(f^{n-1}(013211322)) = 
+rho(g^n(0322)) = rho(g^{n+1}(0))
+Induction step part (1):
+tau(f^n(1)) = 
+tau(f^{n-1}(1)) = 
+rho(g^n(1)) = rho(g^{n+1}(1))
+Induction step part (2):
+tau(f^n(2)) = 
+tau(f^{n-1}(2)) = 
+rho(g^n(2)) = rho(g^{n+1}(2))
+Induction step part (3):
+tau(f^n(113)) = 
+tau(f^{n-1}(11132)) = 
+rho(g^n(132)) = rho(g^{n+1}(3))
+Induction step proved, hence claim proved
+

@@ -1,0 +1,57 @@
+3
+02
+101
+10
+012
+3
+0210
+1
+10
+012
+
+
+Proof found by standard tool eq:
+
+f(0) = 02
+f(1) = 101
+f(2) = 10
+tau(0) = 0
+tau(1) = 1
+tau(2) = 2
+g(0) = 0210
+g(1) = 1
+g(2) = 10
+rho(0) = 0
+rho(1) = 1
+rho(2) = 2
+Claim to be proved: tau(f^infty(0)) = rho(g^infty(0)).
+We will prove the following 2 properties simultaneously by induction on n.
+(0) tau(f^n(021)) = rho(g^n(021)).
+(1) tau(f^n(01)) = rho(g^n(01)).
+Then our claim follows from (0).
+Basis n=0 of induction:
+tau(f^0(021)) = 021 = rho(g^0(021)).
+tau(f^0(01)) = 01 = rho(g^0(01)).
+Basis of induction proved.
+Induction step part (0):
+tau(f^{n+1}(021)) = 
+tau(f^n(f(021))) = 
+tau(f^n(0210101)) = 
+tau(f^n(021)) tau(f^n(01)) tau(f^n(01)) =   (by induction hypothesis)
+rho(g^n(021)) rho(g^n(01)) rho(g^n(01)) = 
+rho(g^n(0210101)) = 
+rho(g^n(g(021))) = 
+rho(g^{n+1}(021)).
+Induction step part (1):
+tau(f^{n+1}(01)) = 
+tau(f^n(f(01))) = 
+tau(f^n(02101)) = 
+tau(f^n(021)) tau(f^n(01)) =   (by induction hypothesis)
+rho(g^n(021)) rho(g^n(01)) = 
+rho(g^n(02101)) = 
+rho(g^n(g(01))) = 
+rho(g^{n+1}(01)).
+Induction step proved, hence claim proved.
+
+No proof found by basic tool eqb.
+

@@ -1,0 +1,12 @@
+3
+01
+21
+2
+012
+3
+012
+12
+2
+012
+
+Both eq and eqb fail, explained in Example 6 of paper

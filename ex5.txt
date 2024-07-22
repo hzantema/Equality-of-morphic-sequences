@@ -1,0 +1,10 @@
+2
+01
+11
+01
+2
+01
+111
+01
+
+Both eq and eqb fail, explained in Example 5 of paper
