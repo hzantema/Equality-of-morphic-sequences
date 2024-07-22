@@ -11,4 +11,4 @@ They may serve as input for the programs, but also contain the output of the pro
 For instance, by running "eq < ex1.txt" a proof is generated that the corresponding morphic sequences are equal, which is also part of the file ex1.txt.
 The format of the input is explained in the above mentioned paper.
 
-The programs and examples are developed by Hans Zantema in 2024.
+The programs and examples have been developed by Hans Zantema in 2024.
