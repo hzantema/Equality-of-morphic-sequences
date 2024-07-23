@@ -1,6 +1,6 @@
 
 This repository consists of all files for proving equality of morphic sequences, as described in the paper 
-"Equality of morphic sequences" by Hans Zantema on Arxiv.
+"Equality of morphic sequences" by Hans Zantema, available at https://arxiv.org/pdf/2407.15721.
 
 It contains the source code of three programs eq.p, eql.p and eqb.p, written in FreePascal. 
 Also the Windows executables are available. 
