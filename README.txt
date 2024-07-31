@@ -4,7 +4,7 @@ This repository consists of all files for proving equality of morphic sequences,
 
 It contains the source code of three programs eq.p, eql.p and eqb.p, written in FreePascal. 
 Here eq.p is the default and produces the standard proof. The program eql.p does the same, but produces the proof in LaTeX format.
-The program eqb.p applies the baisc approach as explained in the paper.
+The program eqb.p applies the basic approach as explained in the paper.
 
 Also the Windows executables are available. 
 
