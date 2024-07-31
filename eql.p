@@ -1,9 +1,10 @@
 program g (input,output);
+{$R+}
 var i,j,k,t,n,chib : integer;
-fout : boolean;
+fout,expan : boolean;
 s : string;
 f : array[1..3,0..9,1..25] of byte;
-len : array[1..3,0..9] of integer;
+len,len2,len3 : array[1..3,0..9] of integer;
 tau : array[1..2,0..9] of byte;
 ff : array[1..3,1..1000] of byte;
 hib : array[1..3] of integer;
@@ -12,7 +13,7 @@ dim : array[1..2] of integer;
 rate : array[1..2] of real;
 a : array[1..2,0..9,0..9] of integer;
 c : array[1..2,1..10,1..50] of byte;
-ck : array[1..10,1..50] of boolean;
+ck : array[1..10,0..50] of boolean;
 lenc : array[1..10] of integer;
 
 procedure pp(m,ss,tt : integer);
@@ -71,6 +72,7 @@ j,k,m,mm : integer;
 hib : array[0..9] of integer;
 t : array[0..9,1..50] of byte;
 begin
+expan := true;
 if i=1 then c := 'f' else c := 'g';
 writeln('\noindent Replace $',c,'$ by $',c,'^',q,'$:');
 write('$');
@@ -103,6 +105,7 @@ end;
 procedure adjustrates;
 var r: real;
 begin
+expan := false;
 r := ln(rate[1])/ln(rate[2]);
 if r > 0.49 then
 if r < 0.51 then expand(1,2);
@@ -116,23 +119,37 @@ if r > 1.48 then
 if r < 1.52 then begin expand(2,3); expand(1,2); end;
 if r > 0.66 then
 if r < 0.68 then begin expand(2,2); expand(1,3); end;
+if not expan then
+if ((r < 0.98) or (r > 1.02)) then
+begin
+writeln('***** Approach fails, no proof will be given');
+fout := true;
+end;
 end;
 
 procedure maak;
-var i,j,k,t,bhib,cc : integer;
+var i,j,k,t,cc : integer;
 b : array[1..2,1..1000] of byte;
+bhib : array[1..2] of integer;
 
 function tel(s : integer) : integer;
-var t : array[1..2] of integer;
+var t,t2,t3 : array[1..2] of integer;
 i,p : integer;
 begin
+{writeln('**** start tel: ',s,' bhib = ',bhib[1],' ',bhib[2]);}
 for i := 1 to 2 do  t[i] := len[i,b[i,s]]; 
+for i := 1 to 2 do  t2[i] := len2[i,b[i,s]]; 
+for i := 1 to 2 do  t3[i] := len3[i,b[i,s]]; 
 p := s;
-while t[1] <> t[2] do 
+while (p < bhib[1]) and (p < bhib[2]) and ((t[1] <> t[2]) or (t2[1] <> t2[2]) or (t3[1] <> t3[2])) do 
 begin
 p := p + 1;
 for i := 1 to 2 do  t[i] := t[i] + len[i,b[i,p]]; 
+for i := 1 to 2 do  t2[i] := t2[i] + len2[i,b[i,p]]; 
+for i := 1 to 2 do  t3[i] := t3[i] + len3[i,b[i,p]]; 
+{writeln('***** ',p);}
 end;
+{writeln('**** tel: ',p);}
 tel := p;
 end;{tel}
 
@@ -174,10 +191,12 @@ begin {maak}
 for i := 1 to 2 do
 begin
 for k := 1 to len[i,0] do b[i,k] := f[i,0,k];
-bhib := len[i,0];
+bhib[i] := len[i,0];
 for j := 2 to len[i,0] do
 for k := 1 to len[i,b[i,j]] do
-begin bhib := bhib+ 1;b[i,bhib] := f[i,b[i,j],k]; end;
+begin bhib[i] := bhib[i]+ 1;b[i,bhib[i]] := f[i,b[i,j],k]; end;
+{for j := 1 to bhib[i] do write(b[i,j]);
+writeln;}
 end;
 chib := 1;
 t := tel(1);
@@ -188,19 +207,26 @@ cc := 0;
 while cc < chib do
 begin
 cc := cc+1;
-for i := 1 to 50 do ck[cc,i] := false;
+for i := 0 to 50 do ck[cc,i] := false;
 for i := 1 to 2 do
 begin
-bhib := 0;
+bhib[i] := 0;
 for j := 1 to lenc[cc] do
 for k := 1 to len[i,c[i,cc,j]] do
-begin bhib := bhib+1; b[i,bhib] := f[i,c[i,cc,j],k]; end;
+begin bhib[i] := bhib[i]+1; b[i,bhib[i]] := f[i,c[i,cc,j],k]; end;
+{for j := 1 to bhib do write(b[i,j]);
+writeln;}
 end;
 t := 1;
-while t <= bhib do
+if bhib[1] <> bhib[2] then fout := true else
+while t <= bhib[1] do
 begin
 k := tel(t);
 ck[cc,k] := true;
+{for i := t to k do write(b[1,i]);
+write(', ');
+for i := t to k do write(b[2,i]);
+writeln;}
 voegtoe(t,k);
 t := k+1;
 end;
@@ -211,6 +237,7 @@ end;{maak}
 
 
 begin {start program}
+fout := false;
 for j := 0 to 9 do p[j] := 0;
 for i := 1 to 2 do
 begin
@@ -229,12 +256,13 @@ begin f[i,j,k] := ord(s[k]) - ord('0'); write(f[i,j,k]); a[i,j,f[i,j,k]] := a[i,
 write(', ');
 end;
 writeln;
+
 readln(s);
 for j := 1 to n do 
 begin 
 tau[i,j-1] := ord(s[j]) - ord('0');
 if i=1 then write('\tau') else write('\rho');
-write('(',j-1,') = ',tau[i,j-1]);
+writeln('(',j-1,') = ',tau[i,j-1]);
 if j < n then write(', ');
 end; 
 writeln('.\]');
@@ -242,10 +270,26 @@ rate[i] := comprate(i);
 build(i);
 end;
 adjustrates;
+for i := 1 to 2 do
+for j := 0 to dim[i]-1 do
+begin
+len2[i,j] := 0;
+for k := 1 to len[i,j] do len2[i,j] := len2[i,j]+len[i,f[i,j,k]];
+end;
+for i := 1 to 2 do
+for j := 0 to dim[i]-1 do
+begin
+len3[i,j] := 0;
+for k := 1 to len[i,j] do len3[i,j] := len3[i,j]+len2[i,f[i,j,k]];
+end;
+
+If not fout then
+begin
 writeln;
 writeln('\noindent Claim to be proved: $\tau(f^\infty(0)) = \rho(g^\infty(0))$.');
 writeln;
-fout := false;
+{writeln(hib[1]);
+writeln(hib[2]);}
 for i := 1 to 1000 do
 if i <= hib[1] then
 if i <= hib[2] then
@@ -273,9 +317,9 @@ end;
 writeln('\noindent Then our claim follows from (0).'); 
 writeln;
 writeln('\noindent Basis $n=0$ of induction:'); 
+
 for j := 1 to chib do
 begin
-writeln;
 for i := 1 to lenc[j] do 
 if tau[1,c[1,j,i]] <> tau[2,c[2,j,i]] then begin fout := true; writeln('****** error in tau'); end;
 write('$\tau(f^0(');
@@ -296,10 +340,10 @@ writeln('\noindent Induction step part (',j-1,'):');
 writeln;
 write('$\tau(f^{n+1}(');
 for i := 1 to lenc[j] do write(c[1,j,i]);
-write(')) = ');
+writeln(')) = ');
 write('\tau(f^n(f(');
 for i := 1 to lenc[j] do write(c[1,j,i]);
-write('))) = ');
+writeln('))) = ');
 write('\tau(f^n(');
 for i := 1 to lenc[j] do 
 for k := 1 to len[1,c[1,j,i]] do  write(f[1,c[1,j,i],k]);
@@ -337,5 +381,7 @@ writeln;
 end;
 if not fout then writeln('\noindent Induction step proved, hence claim proved.');
 end;
+end;
+if fout then writeln('**** No proof found.');
 end.
 
